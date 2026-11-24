@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>PROBRIDGE | Buy, Sell &amp; Explore Properties Without Brokerage</title>
+    <meta
+      name="description"
+      content="Explore property buying, selling, rental services, new projects and plots with PROBRIDGE. Connect with trusted real-estate brands and property services."
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.probridge.co.in/" />
+    <meta property="og:title" content="PROBRIDGE | Buy, Sell & Explore Properties Without Brokerage" />
+    <meta
+      property="og:description"
+      content="Explore property buying, selling, rental services, new projects and plots with PROBRIDGE. Connect with trusted real-estate brands and property services."
+    />
+    <meta property="og:image" content="https://www.probridge.co.in/assets/probridge-og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main id="main">
+      <div class="partner-strip">
+        <div class="wrap"><span id="partner-ico"></span> Authorised Channel Partner</div>
+      </div>
+      <section class="hero">
+        <div class="wrap">
+          <span class="eyebrow">End-to-End Property Expertise</span>
+          <h1>Your Property Journey, <span class="gold">Without Brokerage.</span></h1>
+          <p>
+            From buying and selling properties to interiors and home maintenance, PROBRIDGE
+            connects you with the right people and services — without brokerage charges.
+          </p>
+          <div class="cta-row">
+            <a class="btn gold-btn" href="#projects">Explore Properties</a>
+          </div>
+
+          <form class="search" action="plots.html" role="search" aria-label="Search plots">
+            <label>Search
+              <input name="q" placeholder="Project, builder or locality" />
+            </label>
+            <label>Locality
+              <select name="loc" id="loc-select"><option value="">All Chennai</option></select>
+            </label>
+            <label>Min budget
+              <select name="min">
+                <option value="">Any</option>
+                <option value="25">₹25 L</option>
+                <option value="50">₹50 L</option>
+                <option value="75">₹75 L</option>
+                <option value="100">₹1 Cr</option>
+              </select>
+            </label>
+            <label>Max budget
+              <select name="max">
+                <option value="">Any</option>
+                <option value="50">₹50 L</option>
+                <option value="75">₹75 L</option>
+                <option value="100">₹1 Cr</option>
+                <option value="150">₹1.5 Cr</option>
+                <option value="250">₹2.5 Cr</option>
+              </select>
+            </label>
+            <button class="btn navy-btn">Search Plots</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="services" id="services" aria-labelledby="services-title">
+        <div class="wrap">
+          <h2 id="services-title" class="sr-only">Our services</h2>
+          <div class="service-grid" id="service-grid"></div>
+          <div class="maint">
+            <a href="#enquire" data-service="Home Maintenance">
+              <span id="maint-ico"></span> Home Maintenance
+              <span class="muted">– Free consultation</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="builders" id="builders" aria-labelledby="builders-title">
+        <div class="wrap">
+          <div class="head center">
+            <h2 id="builders-title">Our <span class="gold">Builder Alliances</span></h2>
+          </div>
+          <div class="carousel">
+            <button type="button" class="arrow prev" aria-label="Previous builders" hidden></button>
+            <div class="track" id="builder-track"></div>
+            <button type="button" class="arrow next" aria-label="Next builders" hidden></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="alt" id="projects" aria-labelledby="projects-title">
+        <div class="wrap">
+          <div class="head">
+            <div>
+              <span class="eyebrow">New Projects</span>
+              <h2 id="projects-title">Featured Projects</h2>
+              <p class="muted">Handpicked opportunities from top builders.</p>
+            </div>
+          </div>
+          <div class="feature-list" id="feature-list"></div>
+        </div>
+      </section>
+
+      <section class="choice" id="choice" aria-labelledby="choice-title">
+        <div class="wrap">
+          <div class="head center">
+            <span class="eyebrow">PROBRIDGE Choice</span>
+            <h2 id="choice-title">Big Brands. Smart Choices!</h2>
+            <p class="sub">4 Hot Projects. 4 Prime Locations. One Perfect Choice!</p>
+          </div>
+          <div class="choice-grid" id="choice-grid"></div>
+          <p class="closing">YOUR BUDGET. YOUR BRAND. YOUR DREAM ADDRESS!</p>
+        </div>
+      </section>
+
+      <section id="about" aria-labelledby="about-title">
+        <div class="wrap about-box">
+          <div>
+            <span class="eyebrow">About PROBRIDGE</span>
+            <h2 id="about-title">We Connect World of Real Estate.</h2>
+          </div>
+          <div>
+            <p class="promise">Connecting People, Properties &amp; Services Without Brokerage.</p>
+            <p class="muted">
+              PROBRIDGE connects people with property buying, selling, rental, interior and
+              home-maintenance services — so your property journey is made simple, from the first
+              conversation to the final handover.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="alt" id="enquire" aria-labelledby="enquire-title">
+        <div class="wrap enquire-grid">
+          <div class="panel">
+            <h2 id="enquire-title">Enquire Now</h2>
+            <p class="muted">Please fill the form below.</p>
+            <div id="home-form"></div>
+          </div>
+          <div class="contact-card" id="contact">
+            <div>
+              <h2>Get in Touch</h2>
+              <p class="contact-sub">Talk to a PROBRIDGE advisor. Zero brokerage.</p>
+            </div>
+            <ul class="ci-list" id="contact-list"></ul>
+            <div class="ci-actions" id="contact-actions"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="assets/plots-data.js"></script>
+    <script src="assets/home-data.js"></script>
+    <script src="assets/site.js"></script>
+    <script>
+      const $ = (id) => document.getElementById(id);
+      $("partner-ico").outerHTML = icon("shield", 16);
+
+      // Hero search localities
+      $("loc-select").innerHTML += [...new Set(PLOTS.map((p) => p.locality))]
+        .map((l) => `<option>${l}</option>`).join("");
+
+      // Services
+      $("service-grid").innerHTML = SERVICES.map((s) => `
+        <a class="service" href="#enquire" data-service="${s.title}">
+          <span class="ico-wrap">${icon(s.icon, 24)}</span>
+          <h3>${s.title}</h3>
+          <span class="label">${s.label}</span>
+        </a>`).join("");
+      $("maint-ico").outerHTML = icon("wrench", 20);
+
+      // Builder alliances carousel: arrows only when logos overflow
+      const track = $("builder-track");
+      track.innerHTML = BUILDERS.map((b) => `
+        <div class="logo-card"><img src="${b.logo}" alt="${b.name} logo" loading="lazy" /></div>`).join("");
+      const [prev, next] = document.querySelectorAll(".builders .arrow");
+      prev.innerHTML = icon("left", 22);
+      next.innerHTML = icon("right", 22);
+      const step = () => track.firstElementChild.offsetWidth + 16;
+      prev.onclick = () => track.scrollBy({ left: -step(), behavior: "smooth" });
+      next.onclick = () => track.scrollBy({ left: step(), behavior: "smooth" });
+      const syncArrows = () => {
+        const max = track.scrollWidth - track.clientWidth - 2;
+        prev.hidden = track.scrollLeft <= 2;
+        next.hidden = track.scrollLeft >= max;
+      };
+      track.addEventListener("scroll", syncArrows, { passive: true });
+      addEventListener("resize", syncArrows);
+      addEventListener("load", syncArrows);
+      syncArrows();
+
+      // Featured projects
+      const ticks = (items, cls = "") =>
+        `<ul class="ticks ${cls}">${items.map((t) => `<li>${icon("check", 16)}<span>${t}</span></li>`).join("")}</ul>`;
+      $("feature-list").innerHTML = FEATURED.map((f) => `
+        <article class="feature">
+          <div class="feature-img" role="img" aria-label="Representative image for ${f.name}"
+               style="background-image:url('${img(f.image, 1200)}')">
+            <span class="badge">${f.type}</span><span class="rep">Representative image</span>
+          </div>
+          <div class="feature-body">
+            <div>
+              <span class="builder-label">${f.builder}</span>
+              <h3>${f.name}</h3>
+              <p class="with-ico muted">${icon("pin", 16)} ${f.location}</p>
+            </div>
+            ${f.status || f.partner ? `<div class="cta-row">
+              ${f.status ? `<span class="status">${f.status}</span>` : ""}
+              ${f.partner ? `<span class="partner">${f.partner}</span>` : ""}</div>` : ""}
+            <div class="facts">${f.facts.map(([k, v]) => `<div><small>${k}</small><b>${v}</b></div>`).join("")}</div>
+            ${f.rera ? `<p class="rera">${icon("shield", 16)} RERA No.: ${f.rera}</p>` : ""}
+            ${ticks(f.highlights)}
+            ${f.prices ? `<div class="table-wrap"><table class="price-table">
+              <caption class="sr-only">Configurations and prices</caption>
+              <thead><tr><th scope="col">Configuration</th><th scope="col">Size</th><th scope="col">Price</th></tr></thead>
+              <tbody>${f.prices.map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody>
+            </table></div>` : ""}
+            ${f.amenities ? `<details><summary>View all amenities (${f.amenities.length})</summary>${ticks(f.amenities, "cols")}</details>` : ""}
+            ${f.ctaLine ? `<div class="eoi"><b>${f.ctaLine}</b>
+              <span>Call / WhatsApp: <a href="tel:${f.contact.tel}">${f.contact.label}</a> ·
+              <a href="https://wa.me/${f.contact.whatsapp}" target="_blank" rel="noopener">WhatsApp</a></span></div>` : ""}
+            ${f.disclaimer ? `<p class="disclaimer">${f.disclaimer}</p>` : ""}
+            <div class="cta-row"><button type="button" class="btn gold-btn" data-enquire="${f.builder} ${f.name}">${f.cta}</button></div>
+          </div>
+        </article>`).join("");
+
+      // PROBRIDGE choice
+      $("choice-grid").innerHTML = CHOICE.map((c) => `
+        <div class="choice-card">
+          <h3>${c.name}</h3>
+          <span class="type">${c.type}</span>
+          <span class="price">${c.price}</span>
+          <span class="with-ico">${icon("pin", 16)} ${c.location}</span>
+          <button type="button" class="btn ghost-btn" data-enquire="${c.name}">Enquire</button>
+        </div>`).join("");
+
+      // Enquiry form + contact details
+      $("home-form").innerHTML = enquiryForm();
+      const mapUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(SITE.address);
+      $("contact-list").innerHTML = [
+        ["phone", "Phone", SITE.phone, `tel:${SITE.tel}`],
+        ["mail", "Email", SITE.email, `mailto:${SITE.email}`],
+        ["chat", "WhatsApp", SITE.whatsappLabel, `https://wa.me/${SITE.whatsapp}`],
+        ["pin", "Office", SITE.address, mapUrl, "Get directions"]
+      ].map(([ic, label, value, href, more]) => `
+        <li><a href="${href}"${href.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>
+          <span class="ci-ico">${icon(ic, 20)}</span>
+          <span class="ci-text"><small>${label}</small><b>${value}</b>${more ? `<span class="ci-more">${more} ${icon("arrow", 14)}</span>` : ""}</span>
+        </a></li>`).join("");
+      $("contact-actions").innerHTML = `
+        <a class="btn gold-btn" href="tel:${SITE.tel}">${icon("phone", 18)} Call Now</a>
+        <a class="btn ghost-btn" href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener">${icon("chat", 18)} WhatsApp</a>`;
+    </script>
+  </body>
+</html>
