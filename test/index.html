@@ -92,6 +92,29 @@
         </div>
       </section>
 
+      <section class="new-props" id="new-properties" aria-labelledby="new-props-title">
+        <div class="wrap">
+          <div class="head">
+            <div>
+              <span class="eyebrow">Fresh Listings • Just Launched</span>
+              <h2 id="new-props-title">New Properties</h2>
+              <p class="muted">Explore newly added residential spaces across prime locations.</p>
+            </div>
+            <div class="carousel-actions">
+              <a class="btn navy-btn" href="properties.html">View All</a>
+              <button type="button" class="round-btn" id="np-prev" aria-label="Previous properties"></button>
+              <button type="button" class="round-btn" id="np-next" aria-label="Next properties"></button>
+            </div>
+          </div>
+          <div class="track prop-track" id="new-props"></div>
+          <p class="note">*EMI is indicative. Images are representative. Prices and availability are subject to developer confirmation.</p>
+        </div>
+      </section>
+
+      <section class="trust" aria-label="Why choose PROBRIDGE">
+        <div class="wrap trust-grid" id="trust"></div>
+      </section>
+
       <section class="builders" id="builders" aria-labelledby="builders-title">
         <div class="wrap">
           <div class="head center">
@@ -169,6 +192,7 @@
     <div id="site-footer"></div>
     <script src="assets/plots-data.js"></script>
     <script src="assets/home-data.js"></script>
+    <script src="assets/properties-data.js"></script>
     <script src="assets/site.js"></script>
     <script>
       const $ = (id) => document.getElementById(id);
@@ -187,25 +211,22 @@
         </a>`).join("");
       $("maint-ico").outerHTML = icon("wrench", 20);
 
+      // New properties carousel
+      $("new-props").innerHTML = PROPERTIES.map(propCard).join("");
+      carousel($("new-props"), $("np-prev"), $("np-next"));
+
+      // Trust cards
+      $("trust").innerHTML = TRUST.map((t) => `
+        <div class="trust-card trust-${t.tone}">
+          <span class="trust-ico">${icon(t.icon, 26)}</span>
+          <div><h3>${t.title}<span>${t.sub}</span></h3><p>${t.text}</p></div>
+        </div>`).join("");
+
       // Builder alliances carousel: arrows only when logos overflow
       const track = $("builder-track");
       track.innerHTML = BUILDERS.map((b) => `
         <div class="logo-card"><img src="${b.logo}" alt="${b.name} logo" loading="lazy" /></div>`).join("");
-      const [prev, next] = document.querySelectorAll(".builders .arrow");
-      prev.innerHTML = icon("left", 22);
-      next.innerHTML = icon("right", 22);
-      const step = () => track.firstElementChild.offsetWidth + 16;
-      prev.onclick = () => track.scrollBy({ left: -step(), behavior: "smooth" });
-      next.onclick = () => track.scrollBy({ left: step(), behavior: "smooth" });
-      const syncArrows = () => {
-        const max = track.scrollWidth - track.clientWidth - 2;
-        prev.hidden = track.scrollLeft <= 2;
-        next.hidden = track.scrollLeft >= max;
-      };
-      track.addEventListener("scroll", syncArrows, { passive: true });
-      addEventListener("resize", syncArrows);
-      addEventListener("load", syncArrows);
-      syncArrows();
+      carousel(track, ...document.querySelectorAll(".builders .arrow"));
 
       // Featured projects
       const ticks = (items, cls = "") =>

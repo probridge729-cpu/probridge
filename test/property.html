@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Property Details | PROBRIDGE</title>
+    <meta name="description" content="Property details, price, configuration and location. Zero brokerage with PROBRIDGE." />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <meta property="og:image" content="https://www.probridge.co.in/assets/probridge-og.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+    <main class="wrap" id="main" style="padding: 30px 0 60px"></main>
+    <div id="site-footer"></div>
+
+    <script src="assets/plots-data.js"></script>
+    <script src="assets/properties-data.js"></script>
+    <script src="assets/site.js"></script>
+    <script>
+      const el = document.getElementById("main");
+      const p = PROPERTIES.find((x) => x.id === new URLSearchParams(location.search).get("id"));
+
+      if (!p) {
+        el.innerHTML = `<div class="empty"><h1>Property not found</h1>
+          <p class="muted">This listing may have been removed.</p><br>
+          <a class="btn gold-btn" href="properties.html">Browse all properties</a></div>`;
+      } else {
+        document.title = `${p.name}, ${p.city} | ${p.config} | PROBRIDGE`;
+        const fact = (label, value) => (value ? `<div><small>${label}</small><b>${value}</b></div>` : "");
+        const related = PROPERTIES.filter((x) => x !== p)
+          .sort((a, b) => (b.city === p.city) - (a.city === p.city))
+          .slice(0, 3);
+
+        el.innerHTML = `
+          <div class="crumbs"><a href="index.html">Home</a> › <a href="properties.html">New Properties</a> ›
+            <a href="properties.html?city=${encodeURIComponent(p.city)}">${p.city}</a> › ${p.name}</div>
+          <div class="detail-hero" style="background-image:url('${photo(p.photo, 1600)}')">
+            <span class="prop-badges"><span class="pb sale">For Sale</span>${p.tags.map((t) => `<span class="pb tag">${t}</span>`).join("")}</span>
+            <span class="prop-foot"><span class="pb verified">${icon("shieldCheck", 14)} Verified</span><span class="pb status">${p.status}</span></span>
+          </div>
+
+          <div class="detail-grid">
+            <div>
+              <div class="detail-title">
+                <div>
+                  <h1>${p.name}</h1>
+                  <p class="muted" style="font-size:18px">${p.tagline}</p>
+                  <p class="muted with-ico">${icon("pin", 16)} ${p.location}</p>
+                  <p class="muted with-ico">${icon("building", 16)} By ${p.builder}</p>
+                </div>
+                <div><small class="muted">Price</small><div class="price">${p.price}</div>
+                  <span class="emi">EMI ${p.emi}*</span></div>
+              </div>
+
+              <nav class="tabs" aria-label="Sections"><a href="#overview">Overview</a><a href="#highlights">Highlights</a><a href="#location">Location</a></nav>
+
+              <div class="block" id="overview">
+                <h2>Overview</h2>
+                <div class="facts">
+                  ${fact("Price", p.price)}
+                  ${fact("Price / sq.ft", p.rate)}
+                  ${fact("EMI (indicative)", p.emi)}
+                  ${fact("Configuration", p.config)}
+                  ${fact("Bathrooms", p.baths)}
+                  ${fact("Property type", p.type)}
+                  ${fact("Status", p.status)}
+                  ${fact("Developer", p.builder)}
+                  ${fact("City", p.city)}
+                </div>
+              </div>
+              <div class="block" id="highlights">
+                <h2>Highlights</h2>
+                <ul class="pills">${["Verified listing", "Zero brokerage", ...p.tags].map((t) => `<li>${t}</li>`).join("")}</ul>
+              </div>
+              <div class="block" id="location">
+                <h2>Location</h2>
+                <iframe class="map" loading="lazy" title="Map of ${p.location}"
+                  src="https://maps.google.com/maps?q=${encodeURIComponent(p.location)}&z=13&output=embed"></iframe>
+              </div>
+              <div class="block cta-row">
+                <button class="btn gold-btn" data-enquire="${p.name}">Enquire Now</button>
+                <button class="btn" data-enquire="${p.name}" data-need="I'd like to schedule a site visit.">Schedule Site Visit</button>
+              </div>
+              <p class="note">*EMI is indicative. Images are representative. Prices and availability are subject to developer confirmation.</p>
+            </div>
+
+            <aside class="side">
+              <div class="panel">
+                <h2 style="font-size:22px">Interested in ${p.name}?</h2>
+                <p class="muted">Get price details and a site visit. Zero brokerage.</p>
+                ${enquiryForm({ project: p.name })}
+                <a class="btn full" style="margin-top:10px" href="tel:${SITE.tel}">${icon("phone", 18)} Call ${SITE.phone}</a>
+              </div>
+            </aside>
+          </div>
+
+          <section style="padding-bottom:0">
+            <div class="head"><h2>Similar properties</h2><a class="link" href="properties.html">View all ${icon("arrow", 16)}</a></div>
+            <div class="grid">${related.map(propCard).join("")}</div>
+          </section>`;
+      }
+    </script>
+  </body>
+</html>

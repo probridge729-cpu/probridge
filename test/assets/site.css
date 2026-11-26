@@ -96,6 +96,61 @@ textarea { min-height: 100px; resize: vertical; }
 .maint .muted { font-weight: 500; }
 .maint .ico { margin-right: 6px; }
 
+/* New properties */
+.prop-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+.prop-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(16, 43, 78, 0.14); }
+.prop-card .card-img { display: block; position: relative; height: 230px; background: #cfd6e0 center/cover; }
+.prop-card .card-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(10, 29, 53, 0.25), transparent 35%, transparent 65%, rgba(10, 29, 53, 0.55)); }
+.prop-badges, .prop-foot { position: absolute; left: 12px; right: 12px; display: flex; gap: 6px; flex-wrap: wrap; z-index: 1; }
+.prop-badges { top: 12px; }
+.prop-foot { bottom: 12px; justify-content: space-between; }
+.pb { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 99px; line-height: 1.2; }
+.pb.sale { background: var(--navy); color: var(--white); letter-spacing: 0.5px; text-transform: uppercase; }
+.pb.tag { background: rgba(255, 255, 255, 0.94); color: var(--navy); }
+.pb.verified { background: #15803d; color: var(--white); }
+.pb.status { background: rgba(10, 29, 53, 0.82); color: var(--white); }
+.prop-body { padding: 20px; display: grid; gap: 8px; flex: 1; align-content: start; }
+.prop-price { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.prop-price b { font-size: 22px; color: var(--navy); letter-spacing: -0.3px; }
+.prop-price span { font-size: 13px; color: var(--muted); font-weight: 600; }
+.emi { justify-self: start; font-size: 13px; font-weight: 700; color: #8a5a00; background: #fff6df; border: 1px solid #f6dfa3; padding: 3px 10px; border-radius: 99px; }
+.prop-body h3 { font-size: 18px; margin: 4px 0 0; line-height: 1.3; }
+.prop-body h3 a:hover { color: var(--gold); }
+.prop-body h3 span { font-weight: 500; color: var(--muted); }
+.prop-body .with-ico { font-size: 14px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 10px; margin-top: 4px; border-top: 1px solid var(--border); }
+.chips span { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--navy); background: var(--off); border: 1px solid var(--border); padding: 6px 12px; border-radius: 99px; }
+.chips .ico { color: var(--gold); }
+.prop-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; padding-top: 10px; }
+.prop-actions .btn { padding: 10px 12px; font-size: 14px; white-space: nowrap; }
+.prop-track .prop-card { flex: 0 0 86%; scroll-snap-align: start; }
+.carousel-actions { display: flex; align-items: center; gap: 10px; }
+.round-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--white); color: var(--navy); display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow); }
+.round-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+.round-btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+.note { font-size: 12px; color: var(--muted); margin-top: 12px; }
+
+/* Trust cards */
+.trust { background: #faf6ea; padding: 40px 0; }
+.trust-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+.trust-card { display: flex; gap: 16px; align-items: flex-start; padding: 24px 22px; border-radius: 22px; border: 1px solid; }
+.trust-card h3 { font-size: 20px; margin: 4px 0 6px; line-height: 1.15; }
+.trust-card h3 span { display: block; font-size: 16px; margin-top: 2px; }
+.trust-card p { margin: 0; color: #3b4556; font-size: 15px; line-height: 1.55; }
+.trust-ico { flex: none; width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; color: var(--white); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12); }
+.trust-green { background: linear-gradient(135deg, #e9f6ef, #d2ebdf); border-color: #b9dcca; }
+.trust-green .trust-ico { background: #14503a; }
+.trust-green h3 { color: #14503a; } .trust-green h3 span { color: #1d6b4c; }
+.trust-blue { background: linear-gradient(135deg, #edf3fd, #dbe7fb); border-color: #c6d7f5; }
+.trust-blue .trust-ico { background: #1e40af; }
+.trust-blue h3 { color: #1e3a8a; } .trust-blue h3 span { color: #1d4ed8; }
+.trust-amber { background: linear-gradient(135deg, #fff9e6, #fdefc4); border-color: #f3dc9c; }
+.trust-amber .trust-ico { background: #d97706; }
+.trust-amber h3 { color: #92400e; } .trust-amber h3 span { color: #b45309; }
+.trust-purple { background: linear-gradient(135deg, #f6f2fe, #ece5fb); border-color: #ddd1f6; }
+.trust-purple .trust-ico { background: #7c3aed; }
+.trust-purple h3 { color: #6b21a8; } .trust-purple h3 span { color: #7e22ce; }
+
 /* Builder alliances (reference: logo cards overlapping an image band) */
 .builders { position: relative; padding-top: 48px; }
 .builders::before { content: ""; position: absolute; inset: 0 0 auto; height: 190px; background: linear-gradient(rgba(10, 29, 53, 0.82), rgba(16, 43, 78, 0.82)), url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=60") center/cover; }
@@ -296,6 +351,8 @@ dialog[open] { animation: pop 0.25s ease-out; }
   .search label:first-child, .search .btn { grid-column: 1 / -1; }
   .logo-card { flex-basis: calc(33.333% - 11px); }
   .feature-img { min-height: 280px; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .prop-track .prop-card { flex-basis: calc(50% - 8px); }
   .price-table { font-size: 14px; }
   .price-table th, .price-table td { padding: 10px 12px; }
   .price-table td:last-child { white-space: nowrap; }
@@ -329,6 +386,8 @@ dialog[open] { animation: pop 0.25s ease-out; }
   .search label:first-child, .search .btn { grid-column: auto; }
   .search .btn { align-self: end; }
   .service-grid { grid-template-columns: repeat(4, 1fr); }
+  .trust-grid { grid-template-columns: repeat(4, 1fr); }
+  .prop-track .prop-card { flex-basis: calc(33.333% - 11px); }
   .logo-card { flex-basis: calc(25% - 12px); }
   .feature { grid-template-columns: 0.9fr 1.1fr; }
   .feature:nth-child(even) .feature-img { order: 2; }

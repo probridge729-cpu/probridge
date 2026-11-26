@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>New Properties | PROBRIDGE</title>
+    <meta
+      name="description"
+      content="Browse newly launched verified apartments and villas in Chennai, Bengaluru and Pune. Zero brokerage with PROBRIDGE."
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <meta property="og:title" content="New Properties | PROBRIDGE" />
+    <meta property="og:image" content="https://www.probridge.co.in/assets/probridge-og.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main id="main">
+      <div class="page-head">
+        <div class="wrap">
+          <div class="crumbs"><a href="index.html">Home</a> › New Properties</div>
+          <span class="eyebrow">Fresh Listings • Just Launched</span>
+          <h1>New Properties</h1>
+          <p class="muted">Newly added verified residences across prime locations. Zero brokerage.</p>
+
+          <form class="filters" id="filters" role="search">
+            <input name="q" placeholder="Search project, builder or locality" aria-label="Search" />
+            <select name="city" aria-label="City"><option value="">All cities</option></select>
+            <select name="status" aria-label="Status">
+              <option value="">Any status</option>
+              <option>Ready to Move</option>
+              <option>Under Construction</option>
+            </select>
+            <select name="max" aria-label="Maximum budget">
+              <option value="">Max budget</option>
+              <option value="75">₹75 L</option>
+              <option value="100">₹1 Cr</option>
+              <option value="150">₹1.5 Cr</option>
+              <option value="300">₹3 Cr</option>
+            </select>
+            <select name="sort" aria-label="Sort">
+              <option value="">Sort: Newest</option>
+              <option value="low">Price: Low to High</option>
+              <option value="high">Price: High to Low</option>
+            </select>
+            <button class="btn gold-btn">Search</button>
+          </form>
+        </div>
+      </div>
+
+      <section>
+        <div class="wrap">
+          <div class="result-bar">
+            <b id="count" aria-live="polite"></b>
+            <a href="properties.html" class="link">Clear filters</a>
+          </div>
+          <div class="grid" id="results"></div>
+          <p class="note">*EMI is indicative. Images are representative. Prices and availability are subject to developer confirmation.</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="assets/plots-data.js"></script>
+    <script src="assets/properties-data.js"></script>
+    <script src="assets/site.js"></script>
+    <script>
+      const form = document.getElementById("filters");
+      form.city.innerHTML += [...new Set(PROPERTIES.map((p) => p.city))]
+        .map((c) => `<option>${c}</option>`).join("");
+
+      const params = new URLSearchParams(location.search);
+      for (const [k, v] of params) if (form[k]) form[k].value = v;
+
+      const q = (params.get("q") || "").toLowerCase().trim();
+      const city = params.get("city");
+      const status = params.get("status");
+      const max = +params.get("max") || Infinity;
+
+      let list = PROPERTIES.filter(
+        (p) =>
+          (!q || [p.name, p.tagline, p.builder, p.location].join(" ").toLowerCase().includes(q)) &&
+          (!city || p.city === city) &&
+          (!status || p.status === status) &&
+          p.min <= max
+      );
+      const sort = params.get("sort");
+      if (sort) list = [...list].sort((a, b) => (sort === "low" ? a.min - b.min : b.min - a.min));
+
+      document.getElementById("count").textContent =
+        `${list.length} propert${list.length === 1 ? "y" : "ies"} found${city ? " in " + city : ""}`;
+      document.getElementById("results").innerHTML = list.length
+        ? list.map(propCard).join("")
+        : `<div class="empty" style="grid-column:1/-1">
+             <h3>No properties match your search yet.</h3>
+             <p class="muted">Tell us what you need and we'll find it for you.</p><br>
+             <button class="btn gold-btn" data-enquire>Post Your Requirement</button>
+           </div>`;
+    </script>
+  </body>
+</html>

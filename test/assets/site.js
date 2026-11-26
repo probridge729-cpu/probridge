@@ -31,7 +31,14 @@ const ICON_PATHS = {
   down: '<path d="m6 9 6 6 6-6"/>',
   menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
   close: '<path d="M18 6 6 18M6 6l12 12"/>',
-  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  shieldCheck: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+  userCheck: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/>',
+  percent: '<path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>',
+  phoneCall: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M14.05 2a9 9 0 0 1 8 7.94M14.05 6A5 5 0 0 1 18 10"/>',
+  building: '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/>',
+  bed: '<path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/>',
+  bath: '<path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.68 3 4 3.68 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><path d="M10 5 8 7M2 12h20M7 19v2M17 19v2"/>'
 };
 const icon = (name, size = 20) =>
   `<svg class="ico" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name]}</svg>`;
@@ -50,6 +57,48 @@ const lakh = (l) => (l >= 100 ? +(l / 100).toFixed(2) + " Cr" : +l.toFixed(2) + 
 const price = (p) => "₹" + lakh(p.min) + (p.max ? " – " + lakh(p.max) : " onwards");
 const size = (p) =>
   p.sizeMin ? `${p.sizeMin.toLocaleString("en-IN")} – ${p.sizeMax.toLocaleString("en-IN")} sq.ft` : `${p.acres} acres`;
+
+const photo = (id, w = 800) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=75`;
+
+// Property card (homepage carousel, properties.html, related on property.html).
+function propCard(p) {
+  const url = `property.html?id=${p.id}`;
+  return `<article class="prop-card">
+    <a class="card-img" href="${url}" tabindex="-1" aria-hidden="true" style="background-image:url('${photo(p.photo)}')">
+      <span class="prop-badges"><span class="pb sale">For Sale</span>${p.tags.map((t) => `<span class="pb tag">${t}</span>`).join("")}</span>
+      <span class="prop-foot"><span class="pb verified">${icon("shieldCheck", 14)} Verified</span><span class="pb status">${p.status}</span></span>
+    </a>
+    <div class="prop-body">
+      <div class="prop-price"><b>${p.price}</b><span>${p.rate}</span></div>
+      <span class="emi">EMI ${p.emi}*</span>
+      <h3><a href="${url}">${p.name}<span> – ${p.tagline}</span></a></h3>
+      <p class="with-ico muted">${icon("pin", 16)} ${p.location}</p>
+      <p class="with-ico muted">${icon("building", 16)} ${p.builder}</p>
+      <div class="chips"><span>${icon("bed", 16)} ${p.config}</span><span>${icon("bath", 16)} ${p.baths}</span></div>
+      <div class="prop-actions">
+        <a class="btn navy-btn" href="${url}">View Details ${icon("arrow", 16)}</a>
+        <button type="button" class="btn" data-enquire="${p.name}">Enquire Now</button>
+      </div>
+    </div></article>`;
+}
+
+// Horizontal scroll-snap carousel. At the ends, overlay arrows (.arrow) hide; other buttons are disabled (faded).
+function carousel(track, prev, next) {
+  const off = (b, v) => (b.classList.contains("arrow") ? (b.hidden = v) : (b.disabled = v));
+  prev.innerHTML = icon("left", 22);
+  next.innerHTML = icon("right", 22);
+  const step = () => track.firstElementChild.offsetWidth + 16;
+  prev.onclick = () => track.scrollBy({ left: -step(), behavior: "smooth" });
+  next.onclick = () => track.scrollBy({ left: step(), behavior: "smooth" });
+  const sync = () => {
+    off(prev, track.scrollLeft <= 2);
+    off(next, track.scrollLeft >= track.scrollWidth - track.clientWidth - 2);
+  };
+  track.addEventListener("scroll", sync, { passive: true });
+  addEventListener("resize", sync);
+  addEventListener("load", sync);
+  sync();
+}
 
 function plotCard(p) {
   const i = PLOTS.indexOf(p);
@@ -164,7 +213,7 @@ const NAV = [
   ["About Us", home("#about")],
   ["New Project", home("#projects")],
   ["New Plot", "plots.html"],
-  ["Properties", [["Plots for Sale", "plots.html"], ["Apartments", home("#choice")], ["Rental Services", home("#services")]]],
+  ["Properties", [["New Properties", "properties.html"], ["Plots for Sale", "plots.html"], ["Apartments", home("#choice")], ["Rental Services", home("#services")]]],
   ["Awards", "awards.html"],
   ["Builders", home("#builders")]
 ];
@@ -196,7 +245,7 @@ document.getElementById("site-footer").outerHTML = `
     <p>PROBRIDGE connects people with property buying, selling, rental, interior and home-maintenance services — without brokerage.</p>
   </div>
   <div><h2>Quick Links</h2><ul>
-    ${NAV.map(([l, h]) => `<li><a href="${Array.isArray(h) ? "plots.html" : h}">${l}</a></li>`).join("")}
+    ${NAV.map(([l, h]) => `<li><a href="${Array.isArray(h) ? "properties.html" : h}">${l}</a></li>`).join("")}
   </ul></div>
   <div><h2>Services</h2><ul>
     ${["Buy Property", "Sell Property", "Rental Services", "Interior Connections", "Home Maintenance"]

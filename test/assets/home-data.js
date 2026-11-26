@@ -78,3 +78,12 @@ const CHOICE = [
   { name: "Brigade", type: "2, 3 & 4 BHK", price: "From ₹1.33Cr", location: "Vanagaram" },
   { name: "Prestige Palm Court", type: "2, 3 & 3.5 BHK", price: "From ₹1.83Cr", location: "Madhavaram" }
 ];
+
+// "Why PROBRIDGE" trust cards. tone = colour theme in site.css (.trust-green / -blue / -amber / -purple).
+const TRUST = [
+  { title: "100% Verified", sub: "Properties", text: "Every home physically verified & documentation checked.", icon: "shieldCheck", tone: "green" },
+  { title: "Direct Owner", sub: "Connect", text: "Talk directly with genuine owners and trusted builders.", icon: "userCheck", tone: "blue" },
+  { title: "Zero Brokerage", sub: "Options", text: "Verified listings with 0% brokerage fees.", icon: "percent", tone: "amber" },
+  { title: "Instant Support", sub: "& Site Visit", text: "Schedule on-site visits and get free expert assistance.", icon: "phoneCall", tone: "purple" }
+];
+
