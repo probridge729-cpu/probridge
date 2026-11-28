@@ -7,7 +7,7 @@ const SITE = {
   tel: "+917667005000",
   whatsapp: "917200141515",
   whatsappLabel: "+91 72001 41515",
-  email: "projects@probridge.co.in",
+  email: "info@probridge.co.in",
   address: "First Floor, No. 10B, Ekambaram Industrial Estate Rd, Alapakkam, Karpaga Vinayagar Colony, Valasaravakkam, Chennai, Tamil Nadu 600116"
 };
 SITE.mapUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(SITE.address);
@@ -155,8 +155,7 @@ function enquiryForm({ project = "", submit = "Submit", message = "" } = {}) {
     ${field("message", "Requirement", `<textarea rows="3" placeholder="Please share your requirement here — location, budget, timeline…">${message}</textarea>`)}
     <div class="consent">
       <label><input type="checkbox" name="consent" id="consent-${n}" value="Yes" required aria-describedby="consent-${n}-err" />
-      <span>I authorise PROBRIDGE and its representatives to contact me about my enquiry via call, SMS, WhatsApp and email.</span></label>
-      <!-- TODO(client): link the Privacy Policy and Terms once those pages exist. -->
+      <span>I authorise PROBRIDGE and its representatives to contact me about my enquiry via call, SMS, WhatsApp and email, and agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms</a>.</span></label>
       <small class="err" id="consent-${n}-err"></small>
     </div>
     <button class="btn gold-btn full" type="submit">${submit}</button>

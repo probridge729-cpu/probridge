@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting… | PROBRIDGE</title>
+    <script>
+      // Kept for old links: forwards ?id=<id> to plot-<id>.html
+      const id = new URLSearchParams(location.search).get("id");
+      location.replace(id && /^[\w-]+$/.test(id) ? "plot-" + id + ".html" : "plots.html");
+    </script>
+  </head>
+  <body><p>Redirecting… <a href="plots.html">Continue</a></p></body>
+</html>

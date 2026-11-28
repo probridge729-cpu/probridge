@@ -17,7 +17,7 @@ const CONFIG = {
   googleVerification: ""
 };
 const NOINDEX = new Set(["awards.html"]); // placeholder pages stay out of search results
-const PAGES = ["index.html", "properties.html", "plots.html", "awards.html"];
+const PAGES = ["index.html", "properties.html", "plots.html", "awards.html", "privacy-policy.html", "terms.html"];
 
 const ROOT = __dirname;
 const read = (f) => fs.readFileSync(path.join(ROOT, f), "utf8");
@@ -101,8 +101,14 @@ function renderPage(page, html, jsonld) {
     const group = { home: R.HOME, listing: R.LISTING }[ns];
     if (!group || !group[fn]) throw new Error(`${page}: unknown block @${name}`);
     return `<!-- @${name} -->${group[fn]()}<!-- @/${name} -->`;
-  });
+  }).replace(/((?:src|href)="assets\/[\w-]+\.(?:js|css))(?:\?v=\w+)?"/g, (_, url) => `${url}?v=${version(url.split('"')[1])}"`);
 }
+
+// Cache-busting: ?v=<content hash> on CSS/JS so browsers fetch new files after every change.
+const crypto = require("crypto");
+const versions = {};
+const version = (file) =>
+  (versions[file] ??= crypto.createHash("md5").update(read(file)).digest("hex").slice(0, 8));
 
 const shell = ({ title, description, main }) => `<!doctype html>
 <html lang="en">
@@ -146,6 +152,25 @@ for (const p of R.PLOTS) {
   });
   write(page, renderPage(page, html, breadcrumb([["Home", ""], ["Plots", "plots.html"], [p.name, page]])));
   details.push(page);
+}
+
+// Old ?id= addresses (property.html?id=x, plot.html?id=x) forward to the new per-listing pages.
+for (const [page, prefix, list] of [["property.html", "property-", "properties.html"], ["plot.html", "plot-", "plots.html"]]) {
+  write(page, `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting… | PROBRIDGE</title>
+    <script>
+      // Kept for old links: forwards ?id=<id> to ${prefix}<id>.html
+      const id = new URLSearchParams(location.search).get("id");
+      location.replace(id && /^[\\w-]+$/.test(id) ? "${prefix}" + id + ".html" : "${list}");
+    </script>
+  </head>
+  <body><p>Redirecting… <a href="${list}">Continue</a></p></body>
+</html>
+`);
 }
 
 // 3. sitemap.xml + robots.txt
