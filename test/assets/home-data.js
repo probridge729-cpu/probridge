@@ -19,6 +19,8 @@ const BUILDERS = [
 const FEATURED = [
   {
     builder: "Puravankara",
+    gallery: "purva-windermere",
+    link: "property-purva-windermere.html",
     name: "Lakevista @ Purva Windermere",
     location: "OMR South, Pallikaranai",
     type: "Apartment",
@@ -46,6 +48,8 @@ const FEATURED = [
   },
   {
     builder: "Godrej",
+    gallery: "godrej-wonderla",
+    link: "plot-godrej-wonderla-plots.html",
     name: "Smart Plug & Play Plots",
     location: "Near Wonderla, Chennai – Thiruporur",
     type: "Plots",
@@ -72,11 +76,11 @@ const FEATURED = [
 ];
 
 const CHOICE = [
-  { name: "Godrej Wonderla", type: "Plots", price: "From ₹35.25L", location: "Thiruporur, OMR" },
+  { name: "Godrej Wonderla", type: "Plots", price: "From ₹35.25L", location: "Thiruporur, OMR", gallery: "godrej-wonderla", link: "plot-godrej-wonderla-plots.html" },
   // TODO(client): promotional "from ₹55L" conflicts with the Lakevista price list (2 BHK ₹80L). Confirm before launch.
-  { name: "Lake Vista", type: "2 & 3 BHK", price: "From ₹55L", location: "Pallikaranai" },
-  { name: "Brigade", type: "2, 3 & 4 BHK", price: "From ₹1.33Cr", location: "Vanagaram" },
-  { name: "Prestige Palm Court", type: "2, 3 & 3.5 BHK", price: "From ₹1.83Cr", location: "Madhavaram" }
+  { name: "Lake Vista", type: "2 & 3 BHK", price: "From ₹55L", location: "Pallikaranai", gallery: "purva-windermere", link: "property-purva-windermere.html" },
+  { name: "Brigade", type: "2, 3 & 4 BHK", price: "From ₹1.33Cr", location: "Vanagaram", gallery: "brigade-vanagaram", link: "property-brigade-vanagaram.html" },
+  { name: "Prestige Palm Court", type: "2, 3 & 3.5 BHK", price: "From ₹1.83Cr", location: "Madhavaram", gallery: "prestige-palm-court", link: "property-prestige-palm-court.html" }
 ];
 
 // "Why PROBRIDGE" trust cards. tone = colour theme in site.css (.trust-green / -blue / -amber / -purple).

@@ -1,0 +1,55 @@
+<footer class="footer">
+      <div class="wrap foot-grid">
+        <div>
+          <a href="index.html" class="foot-logo"><img src="assets/probridge-logo.png" alt="PROBRIDGE" width="1315" height="255" loading="lazy" /></a>
+          <p class="foot-tag">We Connect World of Real Estate.</p>
+          <p>PROBRIDGE connects people with property buying, selling, rental, interior and home-maintenance services — without brokerage.</p>
+        </div>
+        <div>
+          <h2>Quick Links</h2>
+          <ul>
+            <li><a href="{{home}}#about">About Us</a></li>
+            <li><a href="{{home}}#projects">New Project</a></li>
+            <li><a href="plots.html">New Plot</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="awards.html">Awards</a></li>
+            <li><a href="{{home}}#builders">Builders</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Services</h2>
+          <ul>
+            <li><a href="{{home}}#enquire" data-service="Buy Property">Buy Property</a></li>
+            <li><a href="{{home}}#enquire" data-service="Sell Property">Sell Property</a></li>
+            <li><a href="{{home}}#enquire" data-service="Rental Services">Rental Services</a></li>
+            <li><a href="{{home}}#enquire" data-service="Interior Connections">Interior Connections</a></li>
+            <li><a href="{{home}}#enquire" data-service="Home Maintenance">Home Maintenance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Get in Touch</h2>
+          <ul class="contact-list">
+            <li>{{icon:phone:18}}<a href="tel:{{site.tel}}">{{site.phone}}</a></li>
+            <li>{{icon:mail:18}}<a href="mailto:{{site.email}}">{{site.email}}</a></li>
+            <li>{{icon:chat:18}}<a href="https://wa.me/{{site.whatsapp}}" target="_blank" rel="noopener">WhatsApp {{site.whatsappLabel}}</a></li>
+            <li>{{icon:pin:18}}<a href="{{site.mapUrl}}" target="_blank" rel="noopener">{{site.address}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap copy">
+        <span>© <span data-year>{{year}}</span> PROBRIDGE. All rights reserved.</span>
+        <span>Project details are subject to official confirmation by the respective developers.</span>
+      </div>
+    </footer>
+    <div class="mobile-bar">
+      <a href="tel:{{site.tel}}">{{icon:phone:18}} Call</a>
+      <a href="https://wa.me/{{site.whatsapp}}" target="_blank" rel="noopener">{{icon:chat:18}} WhatsApp</a>
+      <button type="button" data-enquire>Enquire Now</button>
+    </div>
+    <dialog id="enquiry" aria-labelledby="enquiry-title"></dialog>
+    <dialog id="lightbox" class="lightbox" aria-label="Photo viewer">
+      <button type="button" class="lb-close" aria-label="Close">{{icon:close:24}}</button>
+      <button type="button" class="lb-nav lb-prev" aria-label="Previous photo">{{icon:left:28}}</button>
+      <figure><img alt="" /><figcaption><span class="lb-cap"></span><span class="lb-count"></span></figcaption></figure>
+      <button type="button" class="lb-nav lb-next" aria-label="Next photo">{{icon:right:28}}</button>
+    </dialog>

@@ -57,6 +57,6 @@ const PLOTS = [
   { id: "rld-merlion-estate", name: "RLD Merlion Estate", builder: "RLD", locality: "Vanagaram", min: 92.04, max: 250, acres: 18, status: "Villa Plots" },
   { id: "vgk-ashbourne-park", name: "VGK Ashbourne Park", builder: "VGK", locality: "Pudupakkam", min: 51, max: 91, acres: 2.4, status: "Villa Plots" },
   { id: "isha-nexus", name: "Isha Nexus", builder: "Isha Homes", locality: "GST Road", min: 26.49, acres: 3.3, status: "Villa Plots" },
-  { id: "godrej-wonderla-plots", name: "Godrej Wonderla Plots", builder: "Godrej Properties", locality: "OMR", min: 39, max: 85.55, acres: 47, status: "New Launch" },
+  { id: "godrej-wonderla-plots", name: "Godrej Wonderla Plots", gallery: "godrej-wonderla", builder: "Godrej Properties", locality: "OMR", min: 39, max: 85.55, acres: 47, status: "New Launch" },
   { id: "jains-adarsh-avenue-2", name: "Jains Adarsh Avenue – Phase II", builder: "Jain Housing", locality: "Kuthambakkam", min: 59.23, acres: 16.5, status: "Villa Plots" }
 ];

@@ -3,6 +3,14 @@
 // TODO(client): verify every price, EMI, rate and tag with the developer before launch.
 // Windermere's "₹68 L" start differs from the Lakevista price list in FEATURED (1 BHK ₹52 L, 2 BHK ₹80 L).
 const PROPERTIES = [
+  { id: "prestige-palm-court", name: "Prestige Palm Court", tagline: "2, 3 & 3.5 BHK Residences", type: "Apartment",
+    city: "Chennai", location: "Madhavaram, Chennai", builder: "Prestige Group",
+    config: "2, 3 & 3.5 BHK", price: "From ₹1.83 Cr", min: 183, tags: ["Clubhouse", "Swimming Pool"],
+    gallery: "prestige-palm-court" },
+  { id: "brigade-vanagaram", name: "Brigade Vanagaram", tagline: "2, 3 & 4 BHK Residences", type: "Apartment",
+    city: "Chennai", location: "Vanagaram, Chennai", builder: "Brigade Group",
+    config: "2, 3 & 4 BHK", price: "From ₹1.33 Cr", min: 133, tags: [],
+    gallery: "brigade-vanagaram" },
   { id: "godrej-azure", name: "Godrej Azure", tagline: "Sea Facing Luxury High-Rise Residences", type: "Apartment",
     city: "Chennai", location: "Padur, OMR IT Expressway, Chennai", builder: "Godrej Properties",
     config: "2, 3 & 4 BHK", baths: "2 – 4 Bathrooms", price: "₹82.5 L – 1.65 Cr", min: 82.5, max: 165,
@@ -18,7 +26,7 @@ const PROPERTIES = [
     config: "4 & 5 BHK Independent Villa", baths: "5 Bathrooms", price: "₹2.80 Cr – 5.50 Cr", min: 280, max: 550,
     emi: "₹1.9L/mo", rate: "₹11,200 / sq.ft", status: "Ready to Move", tags: ["Private Pool", "Beachside Villa"],
     photo: "photo-1613490493576-7fde63acd811" },
-  { id: "puravankara-windermere", name: "Puravankara Windermere", tagline: "Elite Garden Lake-View Homes", type: "Apartment",
+  { id: "purva-windermere", name: "Purva Windermere", gallery: "purva-windermere", tagline: "Elite Garden Lake-View Homes", type: "Apartment",
     city: "Chennai", location: "Pallikaranai, near Velachery, Chennai", builder: "Puravankara Limited",
     config: "2 & 3 BHK", baths: "2 – 3 Bathrooms", price: "₹68 L – 1.28 Cr", min: 68, max: 128,
     emi: "₹47k/mo", rate: "₹5,800 / sq.ft", status: "Ready to Move", tags: ["Township Living", "Lake Facing"],
